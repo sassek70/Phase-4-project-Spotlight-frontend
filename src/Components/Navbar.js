@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import Search from "./Search";
 
 
 const Navbar = () => {
@@ -11,6 +12,7 @@ const Navbar = () => {
             <NavLink to='/users/:id/events' name="UserEvents">Your Events</NavLink>
             <NavLink to='/allvenues' name="Venues">All Venues</NavLink>
             <NavLink to='/allevents' name="Events">All Events</NavLink>
+            <Search />
         </nav>
     )
 }
