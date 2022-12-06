@@ -14,7 +14,7 @@ function App() {
       <Navbar />
       <Routes>
             <Route path='/' element={<Welcome />}/>
-            <Route path='/login/' element={<LogInForm />}/>
+            <Route path='/login' element={<LogInForm />}/>
             {/* <Route path='/createaccount/' element={<NewUserForm />}/> */}
             <Route path='/users/:id/venues' element={<UserVenues />}/>
             <Route path='/users/:id/events' element={<UserEvents />}/>
