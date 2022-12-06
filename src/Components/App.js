@@ -7,10 +7,18 @@ import UserVenues from './UserVenues.js'
 import UserEvents from './UserEvents.js'
 import Venues from './Venues.js'
 import Events from './Events.js'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   const [user, setUser] = useState('')
+
+  useEffect (() => {
+    let userId = localStorage.getItem("username")
+    userId ? 
+    fetch (`http://localhost:3000/users/${userId}`)
+    .then((r) => r.json())
+    .then((serverUser) => setUser(serverUser)) : setUser('')
+  },[])
 
 
 

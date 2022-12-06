@@ -2,7 +2,7 @@ import { useState } from "react"
 
 
 const LogInForm = ({onLogIn}) => {
-    // const [signup, setSignUp] = useState(false)
+    const [signup, setSignUp] = useState(false)
     const [formData, setFormData] = useState({
         username: "",
         password: ""
@@ -12,15 +12,13 @@ const LogInForm = ({onLogIn}) => {
         const {name, value} = e.target
         setFormData((formData) => ({...formData, [name]: value}))
     }
-    console.log(formData)
 
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(formData)
 
         let url = 'http://localhost:3000/login'
-        // if (signup) url = '/users'
+        if (signup) url = 'http://localhost:3000/users'
         fetch(url,{method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30,10 +28,11 @@ const LogInForm = ({onLogIn}) => {
         .then((r) => r.json())
         .then((user) => {
         console.log(user)
-        onLogIn(user);
+        onLogIn(user)
+        localStorage.username = user.id
+        
     })
 }
-    // setFormData({username: "", password: ""})
     
 
 
@@ -47,6 +46,7 @@ const LogInForm = ({onLogIn}) => {
             <input type="text" value={formData.password} name="password" placeholder="Enter a password" onChange={handleChange}></input>
 
             <button type="submit">Log In</button>
+            <button type="submit" onClick={()=>setSignUp(true)}>Sign up!</button>
             
         </form>
     )
