@@ -17,6 +17,7 @@ const LogInForm = ({onLogIn}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        console.log(formData)
 
         let url = 'http://localhost:3000/login'
         // if (signup) url = '/users'
@@ -24,7 +25,7 @@ const LogInForm = ({onLogIn}) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ formData }),
+        body: JSON.stringify(formData),
       })
         .then((r) => r.json())
         .then((user) => {

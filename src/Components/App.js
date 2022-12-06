@@ -10,7 +10,7 @@ import Events from './Events.js'
 import { useState } from 'react';
 
 function App() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState('')
 
 
 
