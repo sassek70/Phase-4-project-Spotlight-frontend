@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
-const LogInForm = () => {
+const LogInForm = ({onLogIn}) => {
     // const [signup, setSignUp] = useState(false)
     const [formData, setFormData] = useState({
         username: "",
@@ -18,7 +18,7 @@ const LogInForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        let url = '/login'
+        let url = 'http://localhost:3000/login'
         // if (signup) url = '/users'
         fetch(url,{method: "POST",
         headers: {
@@ -26,11 +26,12 @@ const LogInForm = () => {
         },
         body: JSON.stringify({ formData }),
       })
-        .then((r) => console.log(r))
-        // .then((user) => {
-        // console.log(user)
-        // onLogin(user);
-    }
+        .then((r) => r.json())
+        .then((user) => {
+        console.log(user)
+        onLogIn(user);
+    })
+}
     // setFormData({username: "", password: ""})
     
 
