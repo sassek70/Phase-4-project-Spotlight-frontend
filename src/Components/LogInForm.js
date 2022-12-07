@@ -32,6 +32,7 @@ const LogInForm = ({setCurrentUser}) => {
         console.log(user)
         setCurrentUser(user)
         localStorage.username = user.id
+        console.log(user)
         navigate(`/users/${user.id}`)}
             )}
     })

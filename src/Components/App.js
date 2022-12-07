@@ -1,7 +1,6 @@
 import Navbar from './Navbar'
 import { Routes, Route, useNavigate} from "react-router-dom";
 import Welcome from './Welcome.js'
-// import NewUserForm from './NewUserForm.js'
 import LogInForm from './LogInForm.js'
 import UserVenues from './UserVenues.js'
 import UserEvents from './UserEvents.js'
@@ -17,9 +16,9 @@ function App() {
   useEffect (() => {
     let user = localStorage.getItem("username")
     user ? 
-    getStoredUserFromServer(user.id)
+    getStoredUserFromServer(user)
     :
-    navigate('/')
+    navigate(`/users/${currentUser? currentUser.id : null}/events`)
   },[])
 
   const getStoredUserFromServer = (user) => {
@@ -38,22 +37,12 @@ function App() {
   return (
     <>
       <Navbar handleLogOut={handleLogOut} currentUser={currentUser}/>
-        {currentUser ?
-        <>
-        <h1>Welcome {currentUser.username}</h1>
-        <Routes>
-            <Route path={`/users/${currentUser.id}`} element={<User currentUser={currentUser}/>}/>
-            <Route path='/users/:id/venues' element={<UserVenues />}/>
-            <Route path='/users/:id/events' element={<UserEvents />}/>
-        </Routes>
-        </>
-        :
-        <>
-        </>
-        }
-      <Routes>
+       <Routes>
             <Route path='/' element={<Welcome />}/>
             <Route path='/login' element={<LogInForm setCurrentUser={setCurrentUser}/>}/>
+            <Route path={`/users/${currentUser? currentUser.id : null}`} element={<User currentUser={currentUser} setCurrentUser={setCurrentUser} handleLogOut={handleLogOut}/>}/>
+            <Route path={`/users/${currentUser? currentUser.id : null}/venues`} element={<UserVenues />}/>
+            <Route path={`/users/${currentUser? currentUser.id : null}/events`} element={<UserEvents />}/>
 
             <Route path='/allvenues' element={<Venues />}/>
             <Route path='/allevents' element={<Events />}/>
