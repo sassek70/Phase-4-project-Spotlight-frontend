@@ -1,9 +1,15 @@
 
 
-const Welcome = () => {
+const Welcome = ({currentUser}) => {
     return (
+
         <>
-            Welcome to Spotlight
+        {currentUser ?
+
+        <h1>Welcome {currentUser.username}</h1>
+        :    
+        <h1>Welcome to Spotlight</h1>
+        }
         </>
     )
 }

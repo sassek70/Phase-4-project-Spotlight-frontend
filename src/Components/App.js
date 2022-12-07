@@ -1,48 +1,52 @@
 import Navbar from './Navbar'
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route, useNavigate} from "react-router-dom";
 import Welcome from './Welcome.js'
-// import NewUserForm from './NewUserForm.js'
 import LogInForm from './LogInForm.js'
 import UserVenues from './UserVenues.js'
 import UserEvents from './UserEvents.js'
 import Venues from './Venues.js'
 import Events from './Events.js'
 import { useEffect, useState } from 'react';
+import User from './User';
 
 function App() {
-  const [currentUser, setCurrentUser] = useState()
+  const [currentUser, setCurrentUser] = useState(null)
+  const navigate = useNavigate()
 
   useEffect (() => {
-    let userId = localStorage.getItem("username")
-    userId ? 
-    fetch (`http://localhost:3000/users/${userId}`)
-    .then((r) => r.json())
-    .then((serverUser) => setCurrentUser(serverUser)) 
+    let user = localStorage.getItem("username")
+    user ? 
+    getStoredUserFromServer(user)
     :
-    setCurrentUser(null)
+    navigate(`/`)
   },[])
+
+  const getStoredUserFromServer = (user) => {
+    fetch (`http://localhost:3000/users/${user}`)
+    .then((r) => r.json())
+    .then((serverUser) => {
+      setCurrentUser(serverUser)
+      navigate(`/users/${currentUser.id}`)
+  }) 
+  }
 
   const handleLogOut =() => {
     localStorage.removeItem("username")
-    setCurrentUser('')
+    setCurrentUser(null)
+    navigate('/')
 }
 
 
   return (
     <>
       <Navbar handleLogOut={handleLogOut} currentUser={currentUser}/>
-        {currentUser ?
-        <>
-        <h1>Welcome {currentUser.username}</h1>
-        </>
-        :
-        <h1>Welcome to Spotlight!</h1>
-        }
-      <Routes>
-            <Route path='/' element={<Welcome />}/>
-            <Route path='/login' element={<LogInForm setCurrentUser={setCurrentUser} currentUser={currentUser}/>}/>
-            <Route path='/users/:id/venues' element={<UserVenues />}/>
-            <Route path='/users/:id/events' element={<UserEvents />}/>
+       <Routes>
+            <Route path='/' element={<Welcome currentUser={currentUser}/>}/>
+            <Route path='/login' element={<LogInForm setCurrentUser={setCurrentUser}/>}/>
+            <Route path={`/users/${currentUser? currentUser.id : null}`} element={<User currentUser={currentUser} setCurrentUser={setCurrentUser} handleLogOut={handleLogOut}/>}/>
+            <Route path={`/users/${currentUser? currentUser.id : null}/venues`} element={<UserVenues />}/>
+            <Route path={`/users/${currentUser? currentUser.id : null}/events`} element={<UserEvents />}/>
+
             <Route path='/allvenues' element={<Venues />}/>
             <Route path='/allevents' element={<Events />}/>
         </Routes>

@@ -1,7 +1,9 @@
 import { useState } from "react"
+import { useNavigate } from "react-router"
 
 
-const LogInForm = ({setCurrentUser, currentUser}) => {
+const LogInForm = ({setCurrentUser}) => {
+    const navigate = useNavigate()
     const [signup, setSignUp] = useState(false)
     const [formData, setFormData] = useState({
         username: "",
@@ -25,12 +27,14 @@ const LogInForm = ({setCurrentUser, currentUser}) => {
         },
         body: JSON.stringify(formData),
       })
-        .then((r) => r.json())
-        .then((user) => {
+        .then(r => {if(r.ok) {
+        r.json().then((user) => {
         console.log(user)
         setCurrentUser(user)
         localStorage.username = user.id
-        
+        console.log(user)
+        navigate(`/users/${user.id}`)}
+            )}
     })
 }
     
