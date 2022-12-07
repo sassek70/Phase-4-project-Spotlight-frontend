@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import VenueCard from "./VenueCard"
+import uuid from "react-uuid"
 
 const Venues = () => {
     const [venueList, setVenueList] = useState([])
@@ -14,7 +15,7 @@ const Venues = () => {
 
     const displayVenues = venueList.map((venue)=> {
         const { id, name, address, city, state, postal_code, image } = venue
-        return <VenueCard key={id} id={id} name={name} address={address} city={city} state={state} postal_code={postal_code} image={image}/>
+        return <VenueCard key={uuid()} id={id} name={name} address={address} city={city} state={state} postal_code={postal_code} image={image}/>
     })
 
 
