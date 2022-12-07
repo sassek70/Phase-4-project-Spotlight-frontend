@@ -34,17 +34,10 @@ const LogInForm = ({setCurrentUser, currentUser}) => {
     })
 }
     
-    const handleLogOut =() => {
-        localStorage.removeItem("username")
-        setCurrentUser('')
-    }
+
 
 
     return ( 
-        <>
-        {currentUser?    
-            <button onClick={handleLogOut}> Log Out</button>
-            :    
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username:</label>
                 <input type="text" value={formData.username} name="username" placeholder="Enter a Username" onChange={handleChange}></input>
@@ -56,9 +49,6 @@ const LogInForm = ({setCurrentUser, currentUser}) => {
                 <button type="submit" onClick={()=>setSignUp(true)}>Sign up!</button>
 
             </form>
-        }
-        </>
-        
     )
 }
 

@@ -10,24 +10,31 @@ import Events from './Events.js'
 import { useEffect, useState } from 'react';
 
 function App() {
-  const [currentUser, setCurrentUser] = useState('')
+  const [currentUser, setCurrentUser] = useState()
 
   useEffect (() => {
     let userId = localStorage.getItem("username")
     userId ? 
     fetch (`http://localhost:3000/users/${userId}`)
     .then((r) => r.json())
-    .then((serverUser) => setCurrentUser(serverUser)) : setCurrentUser('')
+    .then((serverUser) => setCurrentUser(serverUser)) 
+    :
+    setCurrentUser(null)
   },[])
 
-
+  const handleLogOut =() => {
+    localStorage.removeItem("username")
+    setCurrentUser('')
+}
 
 
   return (
     <>
-      <Navbar />
+      <Navbar handleLogOut={handleLogOut} currentUser={currentUser}/>
         {currentUser ?
+        <>
         <h1>Welcome {currentUser.username}</h1>
+        </>
         :
         <h1>Welcome to Spotlight!</h1>
         }
