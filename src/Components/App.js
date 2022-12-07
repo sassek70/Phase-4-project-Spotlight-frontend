@@ -26,6 +26,11 @@ function App() {
   return (
     <>
       <Navbar />
+        {currentUser ?
+        <h1>Welcome {currentUser.username}</h1>
+        :
+        <h1>Welcome to Spotlight!</h1>
+        }
       <Routes>
             <Route path='/' element={<Welcome />}/>
             <Route path='/login' element={<LogInForm setCurrentUser={setCurrentUser} currentUser={currentUser}/>}/>
@@ -34,11 +39,6 @@ function App() {
             <Route path='/allvenues' element={<Venues />}/>
             <Route path='/allevents' element={<Events />}/>
         </Routes>
-        {currentUser ?
-        <h1>Welcome {currentUser.username}</h1>
-        :
-        <h1>Welcome to Spotlight!</h1>
-        }
     </>
   );
 }
