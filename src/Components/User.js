@@ -42,6 +42,7 @@ const User = ({currentUser, setCurrentUser, handleLogOut}) => {
     return (
         <>
         <button onClick={() => handleDelete(currentUser.id)}>Delete Account</button>
+        <h2>Your Upcoming Events:</h2>
         {displayUserEvents}
         </>
     )

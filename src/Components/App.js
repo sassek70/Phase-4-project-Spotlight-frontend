@@ -18,13 +18,16 @@ function App() {
     user ? 
     getStoredUserFromServer(user)
     :
-    navigate(`/users/${currentUser? currentUser.id : null}/events`)
+    navigate(`/`)
   },[])
 
   const getStoredUserFromServer = (user) => {
     fetch (`http://localhost:3000/users/${user}`)
     .then((r) => r.json())
-    .then((serverUser) => setCurrentUser(serverUser)) 
+    .then((serverUser) => {
+      setCurrentUser(serverUser)
+      navigate(`/users/${currentUser.id}`)
+  }) 
   }
 
   const handleLogOut =() => {
@@ -38,7 +41,7 @@ function App() {
     <>
       <Navbar handleLogOut={handleLogOut} currentUser={currentUser}/>
        <Routes>
-            <Route path='/' element={<Welcome />}/>
+            <Route path='/' element={<Welcome currentUser={currentUser}/>}/>
             <Route path='/login' element={<LogInForm setCurrentUser={setCurrentUser}/>}/>
             <Route path={`/users/${currentUser? currentUser.id : null}`} element={<User currentUser={currentUser} setCurrentUser={setCurrentUser} handleLogOut={handleLogOut}/>}/>
             <Route path={`/users/${currentUser? currentUser.id : null}/venues`} element={<UserVenues />}/>

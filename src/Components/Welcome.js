@@ -1,10 +1,16 @@
 
 
-const Welcome = () => {
+const Welcome = ({currentUser}) => {
     return (
-        <h1>
-            Welcome to Spotlight
-        </h1>
+
+        <>
+        {currentUser ?
+
+        <h1>Welcome {currentUser.username}</h1>
+        :    
+        <h1>Welcome to Spotlight</h1>
+        }
+        </>
     )
 }
 
