@@ -12,6 +12,8 @@ const User = ({currentUser}) => {
         .then((userdata) => setUserEvents(userdata.events))
     },[])
 
+    console.log(userEvents)
+
  
     const displayUserEvents = userEvents.map((event)=> {
         const { id, name, venue, event_type, datetime_local, image } = event

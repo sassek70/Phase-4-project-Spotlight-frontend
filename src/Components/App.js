@@ -15,14 +15,18 @@ function App() {
   const navigate = useNavigate()
 
   useEffect (() => {
-    let userId = localStorage.getItem("username")
-    userId ? 
-    fetch (`http://localhost:3000/users/${userId}`)
+    let user = localStorage.getItem("username")
+    user ? 
+    getStoredUserFromServer(user.id)
+    :
+    navigate('/')
+  },[])
+
+  const getStoredUserFromServer = (user) => {
+    fetch (`http://localhost:3000/users/${user}`)
     .then((r) => r.json())
     .then((serverUser) => setCurrentUser(serverUser)) 
-    :
-    setCurrentUser(null)
-  },[])
+  }
 
   const handleLogOut =() => {
     localStorage.removeItem("username")
@@ -38,7 +42,7 @@ function App() {
         <>
         <h1>Welcome {currentUser.username}</h1>
         <Routes>
-            <Route path='/users/:id' element={<User currentUser={currentUser}/>}/>
+            <Route path={`/users/${currentUser.id}`} element={<User currentUser={currentUser}/>}/>
             <Route path='/users/:id/venues' element={<UserVenues />}/>
             <Route path='/users/:id/events' element={<UserEvents />}/>
         </Routes>

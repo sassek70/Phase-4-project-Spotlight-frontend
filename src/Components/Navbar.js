@@ -8,8 +8,8 @@ const Navbar = ({handleLogOut, currentUser}) => {
             <NavLink to='/' name="Welcome">Home</NavLink>
             {currentUser?
             <>
-            <NavLink to='/users/:id/venues' name="UserVenues">Your Venues</NavLink>
-            <NavLink to='/users/:id/events' name="UserEvents">Your Events</NavLink>
+            <NavLink to={`/users/${currentUser.id}/venues`} name="UserVenues">Your Venues</NavLink>
+            <NavLink to={`/users/${currentUser.id}/events`} name="UserEvents">Your Events</NavLink>
             </>
             :
             <></>

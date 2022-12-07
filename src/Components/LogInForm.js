@@ -27,13 +27,13 @@ const LogInForm = ({setCurrentUser}) => {
         },
         body: JSON.stringify(formData),
       })
-        .then((r) => r.json())
-        .then((user) => {
+        .then(r => {if(r.ok) {
+        r.json().then((user) => {
         console.log(user)
         setCurrentUser(user)
         localStorage.username = user.id
-        navigate(`/users/${user.id}`)
-        
+        navigate(`/users/${user.id}`)}
+            )}
     })
 }
     
