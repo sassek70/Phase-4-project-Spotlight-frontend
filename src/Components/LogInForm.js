@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
-const LogInForm = ({onLogIn}) => {
+const LogInForm = ({setCurrentUser, currentUser}) => {
     const [signup, setSignUp] = useState(false)
     const [formData, setFormData] = useState({
         username: "",
@@ -28,27 +28,37 @@ const LogInForm = ({onLogIn}) => {
         .then((r) => r.json())
         .then((user) => {
         console.log(user)
-        onLogIn(user)
+        setCurrentUser(user)
         localStorage.username = user.id
         
     })
 }
     
+    const handleLogOut =() => {
+        localStorage.removeItem("username")
+        setCurrentUser('')
+    }
 
 
+    return ( 
+        <>
+        {currentUser?    
+            <button onClick={handleLogOut}> Log Out</button>
+            :    
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="username">Username:</label>
+                <input type="text" value={formData.username} name="username" placeholder="Enter a Username" onChange={handleChange}></input>
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="username">Username:</label>
-            <input type="text" value={formData.username} name="username" placeholder="Enter a Username" onChange={handleChange}></input>
+                <label htmlFor="password">Password:</label>
+                <input type="text" value={formData.password} name="password" placeholder="Enter a password" onChange={handleChange}></input>
 
-            <label htmlFor="password">Password:</label>
-            <input type="text" value={formData.password} name="password" placeholder="Enter a password" onChange={handleChange}></input>
+                <button type="submit">Log In</button>
+                <button type="submit" onClick={()=>setSignUp(true)}>Sign up!</button>
 
-            <button type="submit">Log In</button>
-            <button type="submit" onClick={()=>setSignUp(true)}>Sign up!</button>
-            
-        </form>
+            </form>
+        }
+        </>
+        
     )
 }
 

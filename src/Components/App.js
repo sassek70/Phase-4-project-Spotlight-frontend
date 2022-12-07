@@ -10,14 +10,14 @@ import Events from './Events.js'
 import { useEffect, useState } from 'react';
 
 function App() {
-  const [user, setUser] = useState('')
+  const [currentUser, setCurrentUser] = useState('')
 
   useEffect (() => {
     let userId = localStorage.getItem("username")
     userId ? 
     fetch (`http://localhost:3000/users/${userId}`)
     .then((r) => r.json())
-    .then((serverUser) => setUser(serverUser)) : setUser('')
+    .then((serverUser) => setCurrentUser(serverUser)) : setCurrentUser('')
   },[])
 
 
@@ -28,15 +28,14 @@ function App() {
       <Navbar />
       <Routes>
             <Route path='/' element={<Welcome />}/>
-            <Route path='/login' element={<LogInForm onLogIn={setUser}/>}/>
-            {/* <Route path='/createaccount/' element={<NewUserForm />}/> */}
+            <Route path='/login' element={<LogInForm setCurrentUser={setCurrentUser} currentUser={currentUser}/>}/>
             <Route path='/users/:id/venues' element={<UserVenues />}/>
             <Route path='/users/:id/events' element={<UserEvents />}/>
             <Route path='/allvenues' element={<Venues />}/>
             <Route path='/allevents' element={<Events />}/>
         </Routes>
-        {user ?
-        <h1>Welcome {user.username}</h1>
+        {currentUser ?
+        <h1>Welcome {currentUser.username}</h1>
         :
         <h1>Welcome to Spotlight!</h1>
         }
