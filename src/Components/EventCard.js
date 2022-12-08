@@ -4,7 +4,7 @@ import { Card, Icon, Image, Button, Label } from 'semantic-ui-react'
 
 
 
-const EventCard = ({ id, name, venue, event_type, datetime_local, image, updateUserEvents}) => {
+const EventCard = ({ id, name, venue, event_type, datetime_local, image, updateUserEvents, currentUser, removeUserEvent}) => {
 
   
 
@@ -20,6 +20,17 @@ const EventCard = ({ id, name, venue, event_type, datetime_local, image, updateU
               </Card.Description>
            </Card.Content>
           <Card.Content extra>
+            {currentUser?
+          <Button as='div' labelPosition='right' onClick={()=>removeUserEvent(id)}>
+            <Button color='red'>
+              <Icon name='heart' />
+                Not attending
+            </Button>
+            <Label as='a' basic color='red' pointing='left'>
+              2,048 Spotlights
+            </Label>
+          </Button>
+          :
           <Button as='div' labelPosition='right' onClick={()=>updateUserEvents(id)}>
             <Button color='red'>
               <Icon name='heart' />
@@ -29,22 +40,13 @@ const EventCard = ({ id, name, venue, event_type, datetime_local, image, updateU
               2,048 Spotlights
             </Label>
           </Button>
+          }
           </Card.Content>
       </Card>
     )
 }
 
 export default EventCard
-
-
-
-
-
-
-
-
-
-
 
 
 
