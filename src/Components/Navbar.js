@@ -11,7 +11,7 @@ const Navbar = ({handleLogOut, currentUser}) => {
             {currentUser?
             <>
             {/* <NavLink to={`/users/${currentUser.id}/venues`} name="UserVenues">Your Venues</NavLink> */}
-            <NavLink to={`/users/${currentUser.id}/events`} name="UserEvents">Your Events</NavLink>
+            <NavLink to={`/users/${currentUser.id}/user_events`} name="UserEvents">Your Events</NavLink>
             <NavLink to={`/users/${currentUser.id}`} name="Profile">Profile</NavLink>
             </>
             :

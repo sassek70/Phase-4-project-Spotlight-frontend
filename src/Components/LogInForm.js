@@ -35,7 +35,7 @@ const LogInForm = ({setCurrentUser}) => {
         setCurrentUser(user)
         localStorage.username = user.id
         console.log(user)
-        navigate(`/users/${user.id}/events`)}
+        navigate(`/users/${user.id}/user_events`)}
             )}
             else {
                 r.json().then(json => setErrors(json.error))

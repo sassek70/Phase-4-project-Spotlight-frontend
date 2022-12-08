@@ -82,7 +82,7 @@ const updateUserEvents = (newEventId) => {
             <Route path='/login' element={<LogInForm setCurrentUser={setCurrentUser}/>}/>
             <Route path={`/users/${currentUser? currentUser.id : null}`} element={<User currentUser={currentUser} setCurrentUser={setCurrentUser} handleLogOut={handleLogOut}/>}/>
             {/* <Route path={`/users/${currentUser? currentUser.id : null}/venues`} element={<UserVenues />}/> */}
-            <Route path={`/users/${currentUser? currentUser.id : null}/events`} element={<UserEvents currentUser={currentUser} removeUserEvent={removeUserEvent}/>}/>
+            <Route path={`/users/${currentUser? currentUser.id : null}/user_events`} element={<UserEvents currentUser={currentUser} removeUserEvent={removeUserEvent}/>}/>
 
             <Route path='/allvenues' element={<Venues />}/>
             <Route path='/allevents' element={<Events updateUserEvents={updateUserEvents}/>}/>
