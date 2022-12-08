@@ -35,6 +35,9 @@ function App() {
 
 
 const updateUserEvents = (newEventId) => {
+
+  if (currentUser){
+
   fetch (`http://localhost:3000/users/${currentUser.id}/user_events`, {
     method: "POST",
     headers: {
@@ -48,7 +51,13 @@ const updateUserEvents = (newEventId) => {
   .then(res => {if(res.ok) {
   res.json().then(
     navigate(`/users/${currentUser.id}/events`))
-  }})}
+  }})
+} else {
+  alert("You must be logged in")
+  navigate('/login')
+}
+}
+
 
   const removeUserEvent = (eventId) => {
     fetch(`http://localhost:3000/users/${currentUser.id}/user_events/${eventId}`, {
