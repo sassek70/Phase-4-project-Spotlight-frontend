@@ -2,11 +2,13 @@ import { useEffect, useState } from "react"
 import EventCard from "./EventCard"
 import uuid from "react-uuid"
 import { useNavigate } from "react-router"
+import PasswordChangeForm from "./PasswordChangeForm"
 
 
 const User = ({currentUser, setCurrentUser, handleLogOut}) => {
     const navigate = useNavigate()
     const [userEvents, setUserEvents] = useState([])
+    const [showPasswordForm, setShowPasswordForm] = useState(false)
 
     useEffect(() => {
         fetch(`http://localhost:3000/users/${currentUser.id}`)
@@ -39,11 +41,19 @@ const User = ({currentUser, setCurrentUser, handleLogOut}) => {
     }
 
 
+    
     return (
         <>
         <button onClick={() => handleDelete(currentUser.id)}>Delete Account</button>
+        <button onClick={() => setShowPasswordForm(true)}>Change Password</button>
+        {showPasswordForm?
+            <PasswordChangeForm currentUser={currentUser}/>
+        :
+        <>
         <h2>Your Upcoming Events:</h2>
         {displayUserEvents}
+        </>
+        }
         </>
     )
 }

@@ -5,6 +5,8 @@ import { useNavigate } from "react-router"
 const LogInForm = ({setCurrentUser}) => {
     const navigate = useNavigate()
     const [signup, setSignUp] = useState(false)
+    const [errors, setErrors] = useState()
+
     const [formData, setFormData] = useState({
         username: "",
         password: ""
@@ -35,6 +37,9 @@ const LogInForm = ({setCurrentUser}) => {
         console.log(user)
         navigate(`/users/${user.id}`)}
             )}
+            else {
+                r.json().then(json => setErrors(json.error))
+            }
     })
 }
     
@@ -42,6 +47,7 @@ const LogInForm = ({setCurrentUser}) => {
 
 
     return ( 
+        <>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username:</label>
                 <input type="text" value={formData.username} name="username" placeholder="Enter a Username" onChange={handleChange}></input>
@@ -53,6 +59,12 @@ const LogInForm = ({setCurrentUser}) => {
                 <button type="submit" onClick={()=>setSignUp(true)}>Sign up!</button>
 
             </form>
+            {errors ?
+            <h1>{errors}</h1>
+            :
+            <></>
+            }
+        </>
     )
 }
 
