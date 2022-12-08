@@ -4,7 +4,11 @@ import { Card, Icon, Image, Button, Label } from 'semantic-ui-react'
 
 
 
-const EventCard = ({ id, name, venue, event_type, datetime_local, image }) => {
+const EventCard = ({ id, name, venue, event_type, datetime_local, image, updateUserEvents}) => {
+
+  
+
+
 
     return (
         <Card>
@@ -16,7 +20,7 @@ const EventCard = ({ id, name, venue, event_type, datetime_local, image }) => {
               </Card.Description>
            </Card.Content>
           <Card.Content extra>
-          <Button as='div' labelPosition='right'>
+          <Button as='div' labelPosition='right' onClick={()=>updateUserEvents(id)}>
             <Button color='red'>
               <Icon name='heart' />
                 Attend!

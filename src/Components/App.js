@@ -11,13 +11,15 @@ import User from './User';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
+  const [userEvents, setUserEvents] = useState([])
   const navigate = useNavigate()
 
   useEffect (() => {
     let user = localStorage.getItem("username")
-    user ? 
+    if (user) {
     getStoredUserFromServer(user)
-    :
+    }
+    else
     navigate(`/`)
   },[])
 
@@ -26,7 +28,8 @@ function App() {
     .then((r) => r.json())
     .then((serverUser) => {
       setCurrentUser(serverUser)
-      navigate(`/users/${currentUser.id}`)
+      setUserEvents(serverUser.events)
+      navigate(`/users/${currentUser.id}/events`)
   }) 
   }
 
@@ -37,6 +40,29 @@ function App() {
 }
 
 
+console.log(userEvents)
+
+
+const updateUserEvents = (newEventId) => {
+  fetch (`http://localhost:3000/user_events`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      },
+    body: JSON.stringify({
+      user_id: currentUser.id,
+      event_id: newEventId
+    })
+  })
+  .then(res => {if(res.ok) {
+  res.json().then((newEvent) => {
+    setUserEvents((userEvents) => [...userEvents, newEvent])
+    navigate(`/users/${currentUser.id}/events`)
+  })}
+})
+}
+
+
   return (
     <>
       <Navbar handleLogOut={handleLogOut} currentUser={currentUser}/>
@@ -44,11 +70,11 @@ function App() {
             <Route path='/' element={<Welcome currentUser={currentUser}/>}/>
             <Route path='/login' element={<LogInForm setCurrentUser={setCurrentUser}/>}/>
             <Route path={`/users/${currentUser? currentUser.id : null}`} element={<User currentUser={currentUser} setCurrentUser={setCurrentUser} handleLogOut={handleLogOut}/>}/>
-            <Route path={`/users/${currentUser? currentUser.id : null}/venues`} element={<UserVenues />}/>
-            <Route path={`/users/${currentUser? currentUser.id : null}/events`} element={<UserEvents />}/>
+            {/* <Route path={`/users/${currentUser? currentUser.id : null}/venues`} element={<UserVenues />}/> */}
+            <Route path={`/users/${currentUser? currentUser.id : null}/events`} element={<UserEvents currentUser={currentUser} userEvents={userEvents} updateUserEvents={updateUserEvents}/>}/>
 
             <Route path='/allvenues' element={<Venues />}/>
-            <Route path='/allevents' element={<Events />}/>
+            <Route path='/allevents' element={<Events updateUserEvents={updateUserEvents}/>}/>
         </Routes>
     </>
   );
