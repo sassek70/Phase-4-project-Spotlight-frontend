@@ -17,7 +17,7 @@ const Navbar = ({handleLogOut, currentUser}) => {
             :
             <></>
             }
-            <Search />
+            {/* <Search /> */}
             {currentUser ?
             <>
             <button onClick={handleLogOut}> Log Out</button>
