@@ -72,3 +72,33 @@ body {
     justify-content: center;
     margin: auto;
   }
+
+  .welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 5px;
+    max-width: 630px;
+    background-color: black;
+    min-height: 100px;
+    color: white;
+    border-radius: 0.5rem;
+    opacity: 0.8;
+    border: 1px solid white; 
+  }
+  
+  .your-events {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 5px;
+    max-width: 500px;
+    background-color: black;
+    min-height: 80px;
+    color: white;
+    border-radius: 0.5rem;
+    opacity: 0.8;
+    border: 1px solid white; 
+  }

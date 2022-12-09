@@ -29,7 +29,7 @@ const UserEvents = ({currentUser, removeUserEvent}) => {
 
     return (
         <>
-        <h2>Your Upcoming Events:</h2>
+        <h2 className="your-events">Your Upcoming Events:</h2>
         {/* <Card.Group> */}
           <div style={{paddingTop: "50px", maxWidth: "100vh", margin: 'auto'}}>
               <Grid columns={3} padded="horizontally">
