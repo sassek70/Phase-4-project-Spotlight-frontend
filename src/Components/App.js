@@ -20,7 +20,7 @@ function App() {
       .then((r) => r.json())
       .then((serverUser) => {
         setCurrentUser(serverUser)
-        navigate(`/users/${currentUser.id}/events`)
+        navigate(`/users/${currentUser.id}/user_events`)
     }) 
     }
     else
@@ -50,7 +50,7 @@ const updateUserEvents = (newEventId) => {
   })
   .then(res => {if(res.ok) {
   res.json().then(
-    navigate(`/users/${currentUser.id}/events`))
+    navigate(`/users/${currentUser.id}/user_events`))
   }})
 } else {
   alert("You must be logged in")
