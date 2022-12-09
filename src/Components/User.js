@@ -3,6 +3,8 @@ import EventCard from "./EventCard"
 import uuid from "react-uuid"
 import { useNavigate } from "react-router"
 import PasswordChangeForm from "./PasswordChangeForm"
+import { Button } from 'semantic-ui-react'
+
 
 
 const User = ({currentUser, setCurrentUser, handleLogOut}) => {
@@ -43,9 +45,9 @@ const User = ({currentUser, setCurrentUser, handleLogOut}) => {
 
     
     return (
-        <>
-        <button onClick={() => handleDelete(currentUser.id)}>Delete Account</button>
-        <button onClick={() => setShowPasswordForm(true)}>Change Password</button>
+        <div className="button-container">
+        <Button inverted color='red' onClick={() => handleDelete(currentUser.id)}>Delete Account</Button>
+        <Button inverted color='red' onClick={() => setShowPasswordForm(true)}>Change Password</Button>
         {showPasswordForm?
             <PasswordChangeForm currentUser={currentUser}/>
         :
@@ -54,7 +56,7 @@ const User = ({currentUser, setCurrentUser, handleLogOut}) => {
         {displayUserEvents} */}
         </>
         }
-        </>
+        </div>
     )
 }
 

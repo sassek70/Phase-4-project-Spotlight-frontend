@@ -27,13 +27,12 @@ const Venues = () => {
 
 
     return (
-        <Card.Group>
-        <div >
-            <Grid relaxed columns={3} padded="horizontally">
-            {displayVenues}
-            </Grid>
-        </div>
-        </Card.Group>
+        // <Card.Group>
+            <div style={{paddingTop: "50px", maxWidth: "100vh", margin: 'auto'}}>            <Grid relaxed columns={3} padded="horizontally">
+                {displayVenues}
+                </Grid>
+            </div>
+        // </Card.Group>
 
 
     )
