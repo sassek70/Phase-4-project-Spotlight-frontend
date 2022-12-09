@@ -61,7 +61,7 @@ const LogInForm = ({setCurrentUser}) => {
                 />
                 <Form.Field>
                   <label style={{color: "white"}} className="form-label">Password</label>
-                  <input className="form-input" type="text" value={formData.password} name="password" onChange={handleChange} placeholder='Enter a password' />
+                  <input className="form-input" type="password" value={formData.password} name="password" onChange={handleChange} placeholder='Enter a password' />
                 </Form.Field>
                 <Button inverted color='red' type='submit'>Log In</Button>
                 <Button inverted color='red' type="submit" onClick={()=>setSignUp(true)}>Sign up!</Button>
