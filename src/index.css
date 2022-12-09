@@ -7,6 +7,10 @@ body {
     background-position: center;
   }
 
+  h1 {
+    color: red;
+  }
+
 
   .link-container {
     display: flex;
