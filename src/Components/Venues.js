@@ -8,7 +8,7 @@ const Venues = () => {
     const [venueList, setVenueList] = useState([])
 
     useEffect (()=> {
-        fetch (`http://localhost:3000/venues`)
+        fetch (`${process.env.REACT_APP_BACKEND_URL}/venues`)
         .then(res=> res.json())
         .then(venueArray => setVenueList(venueArray))
     },[])

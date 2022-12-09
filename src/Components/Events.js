@@ -7,7 +7,7 @@ const Events = ({updateUserEvents}) => {
     const [eventList, setEventList] = useState([])
 
     useEffect (()=> {
-        fetch (`http://localhost:3000/events`)
+        fetch (`${process.env.REACT_APP_BACKEND_URL}/events`)
         .then(res=> res.json())
         .then(eventArray => setEventList(eventArray))
     },[])

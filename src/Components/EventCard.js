@@ -12,7 +12,7 @@ const EventCard = ({ id, name, venue, event_type, datetime_local, image, updateU
 
     return (
         <Card>
-          <Image src={image} wrapped ui={false} />
+          <Image src={`${process.env.REACT_APP_BACKEND_URL}${image}`} wrapped ui={false} />
           <Card.Content>
             <Card.Header>{name}</Card.Header>
               <Card.Description>

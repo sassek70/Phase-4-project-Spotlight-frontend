@@ -21,8 +21,8 @@ const LogInForm = ({setCurrentUser}) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        let url = 'http://localhost:3000/login'
-        if (signup) url = 'http://localhost:3000/users'
+        let url = `${process.env.REACT_APP_BACKEND_URL}/login`
+        if (signup) url = `${process.env.REACT_APP_BACKEND_URL}/users`
         fetch(url,{method: "POST",
         headers: {
           "Content-Type": "application/json",
