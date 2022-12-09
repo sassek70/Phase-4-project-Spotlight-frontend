@@ -67,7 +67,7 @@ const LogInForm = ({setCurrentUser}) => {
                 <Button inverted color='red' type="submit" onClick={()=>setSignUp(true)}>Sign up!</Button>
             </Form>
             {errors ?
-            <h1>{errors}</h1>
+            <h3>{errors}</h3>
             :
             <></>
             }
