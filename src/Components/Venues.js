@@ -28,7 +28,7 @@ const Venues = () => {
 
     return (
         <Card.Group>
-        <div style={{paddingTop: "50px"}}>
+        <div >
             <Grid relaxed columns={3} padded="horizontally">
             {displayVenues}
             </Grid>
