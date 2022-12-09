@@ -26,7 +26,7 @@ const User = ({currentUser, setCurrentUser, handleLogOut}) => {
     // })
 
     const handleDelete = () => {
-        fetch(`http://localhost:3000/users/${currentUser.id}`, {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${currentUser.id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type" : "application/json"

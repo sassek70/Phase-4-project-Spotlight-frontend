@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import EventCard from "./EventCard"
 import uuid from "react-uuid"
+import { Card, Grid } from 'semantic-ui-react'
+
 
 
 const UserEvents = ({currentUser, removeUserEvent}) => {
@@ -8,7 +10,7 @@ const UserEvents = ({currentUser, removeUserEvent}) => {
 
 
     useEffect(() => {
-    fetch (`http://localhost:3000/users/${currentUser.id}`)
+    fetch (`${process.env.REACT_APP_BACKEND_URL}/users/${currentUser.id}`)
       .then((r) => r.json())
       .then((user) => setUserEvents(user.events))
     },[])
@@ -17,16 +19,29 @@ const UserEvents = ({currentUser, removeUserEvent}) => {
 
     const displayUserEvents = userEvents.map((event)=> {
         const { id, name, venue, event_type, datetime_local, image } = event
-        return <EventCard key={uuid()} id={id} name={name} venue={venue} event_type={event_type} datetime_local={datetime_local} image={image} removeUserEvent={removeUserEvent} currentUser={currentUser}/>
+        return (
+          <Grid.Column key={uuid()}>
+            <EventCard id={id} name={name} venue={venue} event_type={event_type} datetime_local={datetime_local} image={image} removeUserEvent={removeUserEvent} currentUser={currentUser}/>
+          </Grid.Column>
+        )
     })
 
 
     return (
         <>
         <h2>Your Upcoming Events:</h2>
-        {displayUserEvents}
+        <Card.Group>
+          <div style={{paddingTop: "50px"}}>
+              <Grid relaxed columns={3} padded="horizontally">
+              {displayUserEvents}
+              </Grid>
+          </div>
+        </Card.Group>
         </>
     )
 }
 
 export default UserEvents
+
+
+

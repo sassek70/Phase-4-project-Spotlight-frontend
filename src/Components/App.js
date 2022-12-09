@@ -16,7 +16,7 @@ function App() {
   useEffect (() => {
     let user = localStorage.getItem("username")
     if (user) {
-      fetch (`http://localhost:3000/users/${user}`)
+      fetch (`${process.env.REACT_APP_BACKEND_URL}/users/${user}`)
       .then((r) => r.json())
       .then((serverUser) => {
         setCurrentUser(serverUser)
@@ -38,7 +38,7 @@ const updateUserEvents = (newEventId) => {
 
   if (currentUser){
 
-  fetch (`http://localhost:3000/users/${currentUser.id}/user_events`, {
+  fetch (`${process.env.REACT_APP_BACKEND_URL}/users/${currentUser.id}/user_events`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const updateUserEvents = (newEventId) => {
 
 
   const removeUserEvent = (eventId) => {
-    fetch(`http://localhost:3000/users/${currentUser.id}/user_events/${eventId}`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${currentUser.id}/user_events/${eventId}`, {
         method: "DELETE",
         headers: {
             "Content-Type" : "application/json"
@@ -80,9 +80,9 @@ const updateUserEvents = (newEventId) => {
        <Routes>
             <Route path='/' element={<Welcome currentUser={currentUser}/>}/>
             <Route path='/login' element={<LogInForm setCurrentUser={setCurrentUser}/>}/>
-            <Route path={`/users/${currentUser? currentUser.id : null}`} element={<User currentUser={currentUser} setCurrentUser={setCurrentUser} handleLogOut={handleLogOut}/>}/>
+            <Route path={`/users/${currentUser? currentUser.id : null}`} element={<User  currentUser={currentUser} setCurrentUser={setCurrentUser} handleLogOut={handleLogOut}/>}/>
             {/* <Route path={`/users/${currentUser? currentUser.id : null}/venues`} element={<UserVenues />}/> */}
-            <Route path={`/users/${currentUser? currentUser.id : null}/user_events`} element={<UserEvents currentUser={currentUser} removeUserEvent={removeUserEvent}/>}/>
+            <Route path={`/users/${currentUser? currentUser.id : null}/user_events`} element={<UserEvents  currentUser={currentUser} removeUserEvent={removeUserEvent}/>}/>
 
             <Route path='/allvenues' element={<Venues />}/>
             <Route path='/allevents' element={<Events updateUserEvents={updateUserEvents}/>}/>
