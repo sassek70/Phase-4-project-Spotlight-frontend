@@ -13,7 +13,7 @@ const Venues = () => {
         .then(venueArray => setVenueList(venueArray))
     },[])
 
-    // console.log(venueList)
+    console.log(venueList)
 
     const displayVenues = venueList.map((venue)=> {
         const { id, name, address, city, state, postal_code, image } = venue
@@ -27,13 +27,13 @@ const Venues = () => {
 
 
     return (
-        <Card.Group>
-        <div style={{paddingTop: "50px"}}>
-            <Grid relaxed columns={3} padded="horizontally">
-            {displayVenues}
-            </Grid>
-        </div>
-        </Card.Group>
+        // <Card.Group>
+            <div style={{paddingTop: "50px", maxWidth: "100vh", margin: 'auto'}}>            
+                <Grid relaxed columns={3} padded="horizontally">
+                {displayVenues}
+                </Grid>
+            </div>
+        // </Card.Group>
 
 
     )

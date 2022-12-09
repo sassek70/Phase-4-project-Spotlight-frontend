@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router"
+import { Button, Form, Message } from 'semantic-ui-react'
 
 
 const LogInForm = ({setCurrentUser}) => {
@@ -47,24 +48,30 @@ const LogInForm = ({setCurrentUser}) => {
 
 
     return ( 
-        <>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username:</label>
-                <input type="text" value={formData.username} name="username" placeholder="Enter a Username" onChange={handleChange}></input>
-
-                <label htmlFor="password">Password:</label>
-                <input type="text" value={formData.password} name="password" placeholder="Enter a password" onChange={handleChange}></input>
-
-                <button type="submit">Log In</button>
-                <button type="submit" onClick={()=>setSignUp(true)}>Sign up!</button>
-
-            </form>
+        <div className="form-container">
+            <Form onSubmit={handleSubmit}>
+                <Form.Field>
+                  <label style={{color: "white"}} className="form-label">Username</label>
+                  <input className="form-input" type="text" value={formData.username} name="username" onChange={handleChange} placeholder='Enter a Username' />
+                </Form.Field>
+                <Message
+                error
+                header='Action Forbidden'
+                content='You can only sign up for an account once with a given e-mail address.'
+                />
+                <Form.Field>
+                  <label style={{color: "white"}} className="form-label">Password</label>
+                  <input className="form-input" type="text" value={formData.password} name="password" onChange={handleChange} placeholder='Enter a password' />
+                </Form.Field>
+                <Button inverted color='red' type='submit'>Log In</Button>
+                <Button inverted color='red' type="submit" onClick={()=>setSignUp(true)}>Sign up!</Button>
+            </Form>
             {errors ?
-            <h1>{errors}</h1>
+            <h3>{errors}</h3>
             :
             <></>
             }
-        </>
+        </div>
     )
 }
 

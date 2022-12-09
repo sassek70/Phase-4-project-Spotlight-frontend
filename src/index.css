@@ -6,3 +6,103 @@ body {
     background-attachment: fixed;
     background-position: center;
   }
+
+  h3 {
+    color: red;
+  }
+
+
+  .link-container {
+    display: flex;
+    justify-content: space-evenly;
+    font-size:1.25rem;
+    margin: auto;
+    max-width: 650px;
+    flex-grow: 1;
+    padding: 20px 20px 50px 20px;
+  }
+
+  .card-container {
+    display: inline-flex;
+    margin: auto;
+    max-width: 900px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .login-form {
+    display: inline-flexbox;
+    padding: 10px;
+    border: 1px solid black;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    margin-top: 5px;
+    max-width: 630px;
+    background-color: black;
+    color: white;
+    border-radius: 0.5rem;
+    opacity: 0.8;
+  }
+
+  .form-container {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    min-width: 300px;
+    max-width: 400px;
+    min-height: 220px;
+    text-align: center;
+    background-color: black;
+    /* color: white; */
+    border-radius: 0.5rem;
+    opacity: 0.8;
+    border: 1px solid white; 
+  }
+
+  .form-label {
+    display: flex;
+    text-align: left;
+  }
+  
+  .field {
+    min-width: 350px;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+  }
+
+  .welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 5px;
+    max-width: 630px;
+    background-color: black;
+    min-height: 100px;
+    color: white;
+    border-radius: 0.5rem;
+    opacity: 0.8;
+    border: 1px solid white; 
+  }
+  
+  .your-events {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 5px;
+    max-width: 500px;
+    background-color: black;
+    min-height: 80px;
+    color: white;
+    border-radius: 0.5rem;
+    opacity: 0.8;
+    border: 1px solid white; 
+  }

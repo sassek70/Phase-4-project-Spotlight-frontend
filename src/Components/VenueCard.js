@@ -6,7 +6,7 @@ const VenueCard = ({name, address, city, state, postal_code, image}) => {
 
     return (
         <Card>
-        <Image src={image} wrapped ui={false} />
+        <Image src={`${process.env.REACT_APP_BACKEND_URL}${image}`} wrapped ui={false} />
         <Card.Content>
           <Card.Header>{name}</Card.Header>
           <Card.Meta>
