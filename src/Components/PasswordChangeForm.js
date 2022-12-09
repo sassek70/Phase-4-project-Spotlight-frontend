@@ -45,7 +45,7 @@ const PasswordChangeForm = ({currentUser}) => {
         <form onSubmit={handleSubmit}>
 
             <label htmlFor="password">Password:</label>
-            <input type="text" value={formData.password} name="password" placeholder="Enter a new password" onChange={handleChange}></input>
+            <input type="password" value={formData.password} name="password" placeholder="Enter a new password" onChange={handleChange}></input>
 
             <button type="submit">Save</button>
 
